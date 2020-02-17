@@ -21,7 +21,7 @@ class Camera:
         self.zoom_max = 10
         self.zoom_min = 1
         self.move_sensitivity = 10
-        self.zoom_sensitivity = 10
+        self.zoom_sensitivity = 1
 
         self.key_events = {
             'r': self.toggle_zoom_in,

@@ -25,33 +25,40 @@ def main(screen):
     world_plane = Plane(Vector(0, 0), Vector(1, 1))
     keyboard_handler = Keyboard(screen)
     screen.clear()
-    screen2 = Screen(100, 40,0, 0, Vector(1, 0.46))
-    game_camera = Camera(Vector(30,30),Vector(1,1), screen2)
+    screen2 = Screen(100, 40, 0, 0, Vector(1, 0.46))
+    game_camera = Camera(Vector(30, 30), Vector(1, 1), screen2)
     game_time = time.time()
     print("INITIATION SUCCESSFUL")
     keyboard_handler.on_press(game_camera.key_down)
     keyboard_handler.on_release(game_camera.key_up)
     i = 0
+    square_origin_t = Vector(30, 30)
+    square_length_t = Vector(10, 10)
+    t = time.time()
+    vel = Vector(1, -1)
     while True:
         i += 1
         # print(i)
         # screen.clear()
         # screen2.write_str(Vector(0,5),str(i))
+        t_el=time.time()-t
+        square_origin_t.add(vel.copy().multiply(t_el))
+        t=time.time()
         game_camera.update()
-        square_origin = Vector(30, 30)
-        square_length = Vector(10,10)
+        square_origin = square_origin_t.copy()
+        square_length = square_length_t.copy()
         # game_camera.view_plane.origin=square_origin
         # 0,0 -> 10,10 -> 52,20
         world_plane.transform_to_plane(square_origin, game_camera.view_plane)
         world_plane.transform_by_ratio(square_origin, game_camera.view_plane)
         world_plane.transform_by_ratio(square_length, game_camera.view_plane)
-        game_camera.view_plane.center_to_plane(square_origin,screen2.display_plane)
+        game_camera.view_plane.center_to_plane(square_origin, screen2.display_plane)
         # game_camera.view_plane.transform_by_ratio(square_length,screen2.display_plane)
         # screen2.display_plane.transform_to_plane(square_origin, screen_plane)
         # screen2.display_plane.transform_by_ratio(square_length, screen_plane)
-        screen2.write_str(Vector(0,-1),game_camera.view_plane.origin.__str__()+game_camera.view_plane.dim.__str__())
+        screen2.write_str(Vector(0, -1), game_camera.view_plane.origin.__str__() + game_camera.view_plane.dim.__str__())
 
-        screen2.write_str(Vector(0,-2),square_length.__str__()+square_origin.__str__())
+        screen2.write_str(Vector(0, -2), square_length.__str__() + square_origin.__str__())
 
         # print(square_origin)
         # print(world_plane.origin)
