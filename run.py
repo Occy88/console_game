@@ -8,16 +8,29 @@ from Utils.Keyboard import Keyboard
 import keyboard
 from Tools.Screen import Screen
 from Utils.Plane import Plane
+import os
+import numpy as np
+
+root = os.getcwd()
+from Tools.ImageToAscii import convert_image
 
 # import keyboard
 WITH_KEYBOARD = False
 import math
+t=time.time()
+
+s = convert_image(root + '/Tools/cropped-9.jpeg', 150,0.4, False)
+s=np.array(s)
+print(s)
+print(s.shape)
+print("FINISHED: ", time.time()-t)
+time.sleep(1000)
 
 screen = curses.initscr()
 curses.noecho()
 screen.keypad(True)
-print("starting")
 
+print("starting")
 
 def main(screen):
     # Clear screen
@@ -31,6 +44,7 @@ def main(screen):
     print("INITIATION SUCCESSFUL")
     keyboard_handler.on_press(game_camera.key_down)
     keyboard_handler.on_release(game_camera.key_up)
+
     i = 0
     square_origin_t = Vector(30, 30)
     square_length_t = Vector(10, 10)
@@ -41,9 +55,9 @@ def main(screen):
         # print(i)
         # screen.clear()
         # screen2.write_str(Vector(0,5),str(i))
-        t_el=time.time()-t
+        t_el = time.time() - t
         square_origin_t.add(vel.copy().multiply(t_el))
-        t=time.time()
+        t = time.time()
         game_camera.update()
         square_origin = square_origin_t.copy()
         square_length = square_length_t.copy()
