@@ -43,7 +43,7 @@ class Screen:
         # so to adjust it we need to subtract half the
         # pos=pos.copy().subtract(self.display_plane.origin)
         try:
-            self.window.addstr(-pos.y, pos.x, string)
+            self.window.addstr(-int(pos.y), int(pos.x), string)
         except:
             pass
 

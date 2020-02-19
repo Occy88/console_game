@@ -38,7 +38,7 @@ How we solve:
 1. Mostly already built maybe easier selection if useful vis
 2. Auto ML offering - preprocessing  tools
 [3]. Deployment monitoring platform
-[4]. Bias identification solving
+[4]. Bias correction solving
 ===== Decision Manager ======
 5. Confidence measure somehow
 [6]. Resolution of explanation
@@ -66,4 +66,52 @@ Needs:
 ====== Person ========
 ===== Decision Manager ======
 ===== Auditors
+Nitrogen & 78.084 & 78.000 & 74.200&5&
 
+
+Generic classification
+
+Classification class
+regression values
+confidence level
+
+during deployment
+[backend data requirements]:
+inputs -dataset eval
+outputs -model eval
+model (parameters) for continuous training model shift
+compllaints/flags on decisions 
+custom fields. user defined
+user queries server
+Auxilliary data (for the inputs but not the inputs)
+-------------------------------------------------
+Known dataset (gold standard)
+-------------------------------------------------
+Endpoint config of the Customer ai services
+-------------------------------------------------
+Think about orchestration
+-------------------------------------------------
+[Monitoring platform ]
+live deployed systems
+main dahsboard
+dashboard per system user customizable
+queries
+
+[Logs / Auditing Platform]
+The Same !... + training data? (or just for datascientiests in bias identification interface.)
+--Interface--
+-Statistics over particular categories
+
+
+
+[Bias checking Model level
+Model level]
+Upload/choose dataset
+Evaluation tools over the model with the dataset.
+-------------------------------------------
+- Input sendine dependence plotting
+ - not dataset just one example examine outputs while varying an input scature
+ - interactive SHAP
+
+
+[Bias correction]

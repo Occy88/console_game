@@ -20,7 +20,7 @@ class Camera:
         self.move_down = Timer()
         self.zoom_max = 10
         self.zoom_min = 1
-        self.move_sensitivity = 10
+        self.move_sensitivity = 50
         self.zoom_sensitivity = 1
 
         self.key_events = {

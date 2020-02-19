@@ -9,22 +9,29 @@ import keyboard
 from Tools.Screen import Screen
 from Utils.Plane import Plane
 import os
+from Tools.ImageToAscii import get_char, grey_scale, scale
 import numpy as np
 
 root = os.getcwd()
-from Tools.ImageToAscii import convert_image
+# from Tools.ImageToAscii import convert_image
 
 # import keyboard
 WITH_KEYBOARD = False
 import math
-t=time.time()
 
-s = convert_image(root + '/Tools/cropped-9.jpeg', 150,0.4, False)
-s=np.array(s)
-print(s)
-print(s.shape)
-print("FINISHED: ", time.time()-t)
-time.sleep(1000)
+t = time.time()
+from PIL import Image
+import psutil
+
+# LOAD IMAGE
+image = Image.open('Tools/im1.jpg')
+image = grey_scale(image)
+image.rotate(180)
+#
+# import time
+#
+# t = time.time()
+#
 
 screen = curses.initscr()
 curses.noecho()
@@ -32,7 +39,9 @@ screen.keypad(True)
 
 print("starting")
 
+
 def main(screen):
+    global image
     # Clear screen
     # exit(0)
     world_plane = Plane(Vector(0, 0), Vector(1, 1))
@@ -47,14 +56,17 @@ def main(screen):
 
     i = 0
     square_origin_t = Vector(30, 30)
-    square_length_t = Vector(10, 10)
+    square_length_t = Vector(150, 180)
     t = time.time()
-    vel = Vector(1, -1)
+
+    vel = Vector(0,0)
     while True:
+        # game_camera.view_plane.origin=square_origin_t.copy()
         i += 1
         # print(i)
         # screen.clear()
         # screen2.write_str(Vector(0,5),str(i))
+        # game_camera.view_plane.origin=Vector(-50,-150)
         t_el = time.time() - t
         square_origin_t.add(vel.copy().multiply(t_el))
         t = time.time()
@@ -72,7 +84,7 @@ def main(screen):
         # screen2.display_plane.transform_by_ratio(square_length, screen_plane)
         screen2.write_str(Vector(0, -1), game_camera.view_plane.origin.__str__() + game_camera.view_plane.dim.__str__())
 
-        screen2.write_str(Vector(0, -2), square_length.__str__() + square_origin.__str__())
+        screen2.write_str(Vector(0, -2), square_origin.__str__())
 
         # print(square_origin)
         # print(world_plane.origin)
@@ -88,9 +100,33 @@ def main(screen):
         lines.append(start.copy().add(Vector(0, 0).multiply_vector(square_length)))
 
         screen2.scale_to_screen(lines)
-        screen2.draw_shape(lines)
+        # screen2.draw_shape(lines)
+        im_size = square_length.copy()
+        screen2.scale_to_screen([im_size])
+        im = scale(image, (int(im_size.x), int(im_size.y)))
+
+        im_pos = start.copy()
+        max_x, max_y = im.size
+        arr = []
+        init_pos=im_pos
+        # init_pos=Vector(0,-50)
+        for y in range(max_y):
+            # to_write = ''
+            for x in range(max_x):
+                # to_write += get_char(im, (x, y))
+                char = get_char(im, (x, y))
+                pos = init_pos.copy().add(Vector(x, y))
+                screen2.write_str(pos, char)
+            # screen2.refresh()
+
+            # screen2.write_str(Vector(0, -3),image_loc.y+max_y-yto_write)
+            # screen2.write_str(Vector(0, -4), to_write)
+            # screen2.write_str(Vector(image_loc.x, image_loc.y + (max_y - y)), to_write)
+        screen2.write_str(Vector(0, -5), init_pos.__str__())
+
         screen.refresh()
         screen2.refresh()
+
         # screen2.write_str(Vector(3, 3),
         #                   game_camera.view_plane.origin.getP().__str__() + game_camera.view_plane.dim.getP().__str__())
 
