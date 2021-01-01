@@ -1,0 +1,117 @@
+pains:
+======= Person =========
+1. Managing the data.
+2. Feature engineering
+3. Diagonosing perfomance
+4. Model creation / something
+5. Deployment monitoring
+6. Rreporting
+====== Decision Managers ===========
+1. How accurate is this recomendation?
+2. Why this recommendation
+3. How much can I rely on the reccomendation
+====== Auditors ===========
+1. Are we compliant?
+2. Hodw do we know?
+3. How do we audit
+5. What non legal risks are there
+
+Needs:
+====== Person ========
+1. Data visualisation tools
+2. Some feature engineering tools e.g. pca normalisation feature selection, automation
+3. Data on current performance [x]
+4. Tools to speed performance issues (automl tools)
+5. Deployment tools [x]
+6. Reporting tools
+
+===== Decision Manager ======
+1. Machine estimation
+2. Some explanation -tailored to the end user think doc vs new analyst
+3. Some disclaimer/idea of the reliability of the system
+===== Auditors ============
+1. Logs to audit
+2 Statistics over certain categories let them decide?
+3. Maybe visulisations
+How we solve:
+====== Person ========
+1. Mostly already built maybe easier selection if useful vis
+2. Auto ML offering - preprocessing  tools
+[3]. Deployment monitoring platform
+[4]. Bias correction solving
+===== Decision Manager ======
+5. Confidence measure somehow
+[6]. Resolution of explanation
+7. Model level confidence. ( What things is it good at, What thing is it bad at ).
+===== Auditors
+[8]. Cogs and Auditing platform
+[9]. Model bias checking
+- Running model with known dataset.
+
+==[ Iteration ]==
+1. Cloudbased ai 3,4,6,8,9
+1.1 Add model confidence
+2. Extension/pivot automl
+
+
+Needs:
+====== Person ========
+===== Decision Manager ======
+===== Auditors
+Needs:
+====== Person ========
+===== Decision Manager ======
+===== Auditors
+Needs:
+====== Person ========
+===== Decision Manager ======
+===== Auditors
+Nitrogen & 78.084 & 78.000 & 74.200&5&
+
+
+Generic classification
+
+Classification class
+regression values
+confidence level
+
+during deployment
+[backend data requirements]:
+inputs -dataset eval
+outputs -model eval
+model (parameters) for continuous training model shift
+compllaints/flags on decisions 
+custom fields. user defined
+user queries server
+Auxilliary data (for the inputs but not the inputs)
+-------------------------------------------------
+Known dataset (gold standard)
+-------------------------------------------------
+Endpoint config of the Customer ai services
+-------------------------------------------------
+Think about orchestration
+-------------------------------------------------
+[Monitoring platform ]
+live deployed systems
+main dahsboard
+dashboard per system user customizable
+queries
+
+[Logs / Auditing Platform]
+The Same !... + training data? (or just for datascientiests in bias identification interface.)
+--Interface--
+-Statistics over particular categories
+
+
+
+[Bias checking Model level
+Model level]
+Upload/choose dataset
+Evaluation tools over the model with the dataset.
+-------------------------------------------
+- Input sendine dependence plotting
+ - not dataset just one example examine outputs while varying an input scature
+ - interactive SHAP
+
+
+[Bias correct
