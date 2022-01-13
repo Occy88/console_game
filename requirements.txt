@@ -1,4 +1,4 @@
 keyboard==0.13.4
 bresenham==0.2.1
 numpy==1.18.1
-Pillow==7.0.0
+Pillow==9.0.0
